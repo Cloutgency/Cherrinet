@@ -1,0 +1,23 @@
+/* Hero Section Responsive Background */
+.hero-section {
+  background-image: url(/images/Mob%20Hero%20cherrinet.png) !important;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+  .hero-section {
+    background-image: url(/images/Cherrinet%20Hero%20Banner%20PC.png) !important;
+    background-position: right center;
+    background-size: cover;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-section {
+    background-image: url(/images/Cherrinet%20Hero%20Banner%20PC.png) !important;
+    background-position: right center;
+    background-size: cover;
+  }
+}
