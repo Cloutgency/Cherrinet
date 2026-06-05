@@ -1,9 +1,6 @@
 /* Hero Section Responsive Background */
 .hero-section {
-  background-image: url(/images/Mob%20Hero%20cherrinet.png) !important;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-color: #1a2f58; /* Match image background color */
 }
 
 @media (min-width: 768px) {
@@ -11,6 +8,7 @@
     background-image: url(/images/Cherrinet%20Hero%20Banner%20PC.png) !important;
     background-position: right center;
     background-size: cover;
+    background-color: transparent;
   }
 }
 

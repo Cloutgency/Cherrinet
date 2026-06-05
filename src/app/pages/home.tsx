@@ -4,16 +4,16 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { CoverageChecker } from "../components/coverage-checker";
 
 const features = [
-  { icon: Zap, title: "Lightning Fast", desc: "Up to 1 Gbps symmetric speeds for seamless streaming and gaming" },
-  { icon: Shield, title: "99.9% Uptime", desc: "Enterprise-grade reliability with redundant fiber infrastructure" },
-  { icon: Clock, title: "24/7 Support", desc: "Round-the-clock technical assistance from our Chennai-based team" },
-  { icon: Headphones, title: "Free Installation", desc: "Professional setup with no hidden charges or installation fees" },
+  { icon: Zap, title: "Lightning Fast", desc: "Speeds up to 1 Gbps, with uploads as fast as your downloads. Built for streaming, gaming, and everything in between." },
+  { icon: Shield, title: "99.9% Uptime", desc: "Always on, always reliable. Backed by redundant fiber infrastructure you can count on, every hour of the day." },
+  { icon: Clock, title: "24/7 Support", desc: "Real humans, ready to help. Whenever you need us, day or night." },
+  { icon: Headphones, title: "Free Installation", desc: "We set it all up at no cost. No hidden charges, no fine print, no surprises." },
 ];
 
 const stats = [
-  { value: "150K+", label: "Active Subscribers" },
+  { value: "10+ Years", label: "Powering Homes" },
   { value: "99.9%", label: "Network Uptime" },
-  { value: "2 Hrs", label: "Avg. Resolution Time" },
+  { value: "200K+", label: "Active Subscribers" },
   { value: "4.8/5", label: "Customer Rating" },
 ];
 
@@ -66,27 +66,25 @@ export function Home() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="hero-section relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-900 to-[#3A0A0E]">
+      <section className="hero-section relative overflow-hidden bg-[#1a2f58] md:bg-gradient-to-br md:from-gray-900 md:via-gray-900 md:to-[#3A0A0E]">
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-transparent" />
+        <div className="hidden md:block absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/80 to-transparent" />
 
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28 lg:py-36">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8 md:py-28 lg:py-36">
           <div className="max-w-2xl flex flex-col gap-6">
             <div className="flex items-center gap-2 px-3 py-1.5 bg-white/10 backdrop-blur-sm rounded-full w-fit">
               <Wifi className="w-4 h-4 text-[#D1444C]" />
-              <span className="text-sm text-[#F5D7D9]">Chennai's #1 Fibernet Provider</span>
+              <span className="text-sm text-[#F5D7D9]">India's Most Trusted Fibernet Provider</span>
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
-              Blazing Fast
+              <span className="text-[#D1444C]">Blazing Fast Fibre</span>
               <br />
-              <span className="text-[#D1444C]">Fiber Internet</span>
-              <br />
-              for Chennai
+              Made for the Way You Live Online.
             </h1>
 
             <p className="text-lg text-gray-300 max-w-lg">
-              Experience uninterrupted streaming, gaming, and work-from-home with Cherrinet's pure fiber-optic broadband.
+              Stream. Game. Work from home. Cherrinet's pure fiber-optic broadband keeps it all running smooth.
             </p>
 
             {/* PIN Code Checker */}
@@ -115,6 +113,17 @@ export function Home() {
             </div>
           </div>
         </div>
+
+        {/* Mobile Hero Image */}
+        <div className="block md:hidden w-full relative -mt-1">
+          {/* Gradient fade to blend the seam smoothly */}
+          <div className="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-[#1a2f58] to-transparent pointer-events-none" />
+          <ImageWithFallback
+            src="/images/Mob Hero cherrinet.png"
+            alt="Cherrinet Banner"
+            className="w-full h-auto"
+          />
+        </div>
       </section>
 
       {/* Stats */}
@@ -136,9 +145,10 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
             <span className="text-sm text-primary uppercase tracking-wider">Why Cherrinet</span>
-            <h2 className="text-3xl lg:text-4xl text-foreground">Built for Chennai's Digital Life</h2>
+            <h2 className="text-3xl lg:text-4xl text-foreground">Built for the Way You Live Online</h2>
             <p className="text-muted-foreground max-w-md">
-              From Anna Nagar to Adyar, we deliver pure fiber-optic internet you can rely on.
+              Streaming, gaming, working, learning.<br />
+              Cherrinet delivers pure fiber-optic internet you can rely on, every single day.
             </p>
           </div>
 
@@ -164,9 +174,9 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
             <span className="text-sm text-primary uppercase tracking-wider">Plans</span>
-            <h2 className="text-3xl lg:text-4xl text-foreground">Simple, Transparent Pricing</h2>
+            <h2 className="text-3xl lg:text-4xl text-foreground">A Plan for Every Home</h2>
             <p className="text-muted-foreground max-w-md">
-              No hidden charges, no data caps. Just fast, reliable internet.
+              From casual browsing to heavy gaming, solo work-from-home to full-house streaming, there's a Cherrinet plan that fits the way you live.
             </p>
           </div>
 
@@ -174,11 +184,10 @@ export function Home() {
             {plans.map((plan, i) => (
               <div
                 key={i}
-                className={`relative flex flex-col gap-5 p-7 rounded-2xl border-2 transition-all hover:shadow-lg ${
-                  plan.popular
-                    ? "border-primary bg-secondary/30 shadow-md"
-                    : "border-border hover:border-primary/30"
-                }`}
+                className={`relative flex flex-col gap-5 p-7 rounded-2xl border-2 transition-all hover:shadow-lg ${plan.popular
+                  ? "border-primary bg-secondary/30 shadow-md"
+                  : "border-border hover:border-primary/30"
+                  }`}
               >
                 {plan.popular && (
                   <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white text-xs px-3 py-1 rounded-full">
@@ -245,11 +254,10 @@ export function Home() {
 
                 <Link
                   to="/plans"
-                  className={`mt-auto w-full py-2.5 rounded-xl text-sm text-center transition-colors ${
-                    plan.popular
-                      ? "bg-primary text-white hover:bg-[#8E1B22]"
-                      : "bg-foreground text-white hover:bg-gray-800"
-                  }`}
+                  className={`mt-auto w-full py-2.5 rounded-xl text-sm text-center transition-colors ${plan.popular
+                    ? "bg-primary text-white hover:bg-[#8E1B22]"
+                    : "bg-foreground text-white hover:bg-gray-800"
+                    }`}
                 >
                   Learn More
                 </Link>
@@ -274,15 +282,15 @@ export function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div className="flex flex-col gap-6">
-              <span className="text-sm text-[#D1444C] uppercase tracking-wider">Trusted by Chennai</span>
+              <span className="text-sm text-[#D1444C] uppercase tracking-wider">TRUSTED FROM DAY ONE</span>
               <h2 className="text-3xl lg:text-4xl text-white">Connecting Homes & Businesses Since 2015</h2>
               <p className="text-gray-400 leading-relaxed">
-                From T. Nagar to Thiruvanmiyur, Cherrinet has been delivering reliable fiber internet to over 150,000 subscribers. We're not just an ISP — we're your neighborhood internet partner.
+                For nearly a decade, Cherrinet has been delivering reliable fiber internet to over 150,000 homes and businesses. We're not just an ISP. We're the internet partner you can count on.
               </p>
               <div className="flex items-center gap-6 mt-2">
                 <div className="flex items-center gap-2">
                   <Users className="w-5 h-5 text-[#D1444C]" />
-                  <span className="text-sm text-gray-300">150K+ Users</span>
+                  <span className="text-sm text-gray-300">200K+ Users</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Award className="w-5 h-5 text-[#D1444C]" />
