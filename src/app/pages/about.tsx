@@ -3,10 +3,10 @@ import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { VideoTestimonials } from "../components/video-testimonials";
 
 const values = [
-  { icon: Target, title: "Customer First", desc: "Every decision we make starts with our subscribers. Your satisfaction drives our innovation." },
-  { icon: Heart, title: "Community Driven", desc: "We're a Chennai company, built by Chennaites for Chennaites. This city is our home." },
-  { icon: Lightbulb, title: "Innovation", desc: "We invest in cutting-edge fiber infrastructure to deliver the fastest, most reliable internet." },
-  { icon: Users, title: "Accessibility", desc: "Affordable, high-quality internet for every home and business — that's our promise." },
+  { icon: Target, title: "Customer First", desc: "Every decision starts with our customers." },
+  { icon: Heart, title: "Community Focused", desc: "Connecting people, homes and businesses." },
+  { icon: Lightbulb, title: "Always Innovating", desc: "Continuously improving our network and services." },
+  { icon: Users, title: "Built For Everyone", desc: " Reliable internet designed for modern life." },
 ];
 
 const testimonials = [
@@ -37,12 +37,12 @@ const testimonials = [
 ];
 
 const milestones = [
-  { year: "2015", event: "Founded in Chennai with a mission to deliver affordable fiber internet" },
-  { year: "2017", event: "Reached 10,000 subscribers across 20 localities" },
-  { year: "2019", event: "Expanded to 50+ areas with 50K subscribers" },
-  { year: "2021", event: "Launched 1 Gbps plans and OTT bundling" },
-  { year: "2023", event: "Crossed 100K subscribers; TRAI excellence award" },
-  { year: "2025", event: "150K+ subscribers; expanding Wi-Fi 6E mesh services" },
+  { year: "2015", event: <><span className="font-semibold text-primary/40">The Beginning</span><br />Started our journey with a vision to make reliable fiber connectivity more accessible.</> },
+  { year: "2017", event: <><span className="font-semibold text-primary/40">10,000 Connections Strong</span><br />Reached our first major subscriber milestone.</> },
+  { year: "2019", event: <><span className="font-semibold text-primary/40">Expanding Our Reach</span><br />Serving more homes across more communities than ever before.</> },
+  { year: "2021", event: <><span className="font-semibold text-primary/40">Stepping Into Gigabit Speeds</span><br />Launched high-speed plans designed for modern digital lifestyles.</> },
+  { year: "2023", event: <><span className="font-semibold text-primary/40">Trusted By Thousands</span><br />Crossed 100,000 subscribers and received industry recognition.</> },
+  { year: "2025", event: <><span className="font-semibold text-primary/40">Looking Ahead</span><br />Continuing to grow our network and deliver better connectivity experiences.</> },
 ];
 
 export function About() {
@@ -55,21 +55,21 @@ export function About() {
             <div className="flex flex-col gap-5">
               <span className="text-sm text-primary uppercase tracking-wider">About Cherrinet</span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl text-foreground leading-tight">
-                Connecting Chennai,
+                Connecting Homes.
                 <br />
-                <span className="text-primary">One Fiber at a Time</span>
+                <span className="text-primary">Powering Possibilities.</span>
               </h1>
               <p className="text-muted-foreground leading-relaxed max-w-lg">
-                Founded in 2015, Cherrinet started with a simple mission: bring world-class fiber internet to every home and business in Chennai. Today, we proudly serve over 150,000 subscribers across 100+ localities.
+                At Cherrinet, we believe a great internet should simply work. That's why we've spent years building a fiber network that delivers dependable speeds, seamless streaming and reliable connectivity for homes and businesses alike.
               </p>
               <div className="flex gap-8 mt-4">
                 <div>
                   <p className="text-3xl text-primary">150K+</p>
-                  <p className="text-sm text-muted-foreground">Subscribers</p>
+                  <p className="text-sm text-muted-foreground">Connected Homes <br />& Businesses</p>
                 </div>
                 <div>
                   <p className="text-3xl text-primary">100+</p>
-                  <p className="text-sm text-muted-foreground">Areas</p>
+                  <p className="text-sm text-muted-foreground">Areas Covered</p>
                 </div>
                 <div>
                   <p className="text-3xl text-primary">300+</p>
@@ -92,9 +92,9 @@ export function About() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
-            <span className="text-sm text-primary uppercase tracking-wider">Our Mission</span>
+            <span className="text-sm text-primary uppercase tracking-wider">WHAT DRIVES US</span>
             <h2 className="text-3xl text-foreground max-w-2xl">
-              To make high-speed fiber internet accessible, affordable, and reliable for every Chennaite
+              Making reliable fiber connectivity accessible to everyone.
             </h2>
           </div>
 
@@ -116,8 +116,8 @@ export function About() {
       <section className="bg-muted/30">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
-            <span className="text-sm text-primary uppercase tracking-wider">Our Journey</span>
-            <h2 className="text-3xl text-foreground">Milestones</h2>
+            <span className="text-sm text-primary uppercase tracking-wider">Milestones That Matter</span>
+            <h2 className="text-3xl text-foreground">From our first connection to thousands, every milestone means better connectivity.</h2>
           </div>
 
           <div className="flex flex-col gap-0">
@@ -145,8 +145,8 @@ export function About() {
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
-            <span className="text-sm text-primary uppercase tracking-wider">Video Testimonials</span>
-            <h2 className="text-3xl text-foreground">Hear It From Our Subscribers</h2>
+            <span className="text-sm text-primary uppercase tracking-wider">CUSTOMER STORIES</span>
+            <h2 className="text-3xl text-foreground">Trusted By Thousands. Recommended By Many.</h2>
             <p className="text-muted-foreground max-w-md">
               Real stories from real Chennai homes and businesses powered by Cherrinet.
             </p>
@@ -173,7 +173,7 @@ export function About() {
                 <span className="text-sm text-[#FBEEEF] uppercase tracking-wider">Our Promise</span>
               </div>
               <h2 className="text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-                Better digital life,
+                Seamless connectivity,
                 <span className="text-[#D1444C]"> every day.</span>
               </h2>
             </div>

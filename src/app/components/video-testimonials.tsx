@@ -17,7 +17,7 @@ const videos: VideoTestimonial[] = [
     location: "Anna Nagar",
     role: "Product Designer",
     quote:
-      "Switched from my previous ISP to Cherrinet 6 months ago. The difference is night and day — consistent speeds even during peak hours.",
+      "Honestly, the best part is that I don't have to think about my internet anymore. It just works, whether I'm working, streaming or gaming.",
     thumbnail:
       "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     duration: "1:24",
@@ -27,7 +27,7 @@ const videos: VideoTestimonial[] = [
     location: "Velachery",
     role: "Freelance Developer",
     quote:
-      "As a freelance developer, reliable internet is essential. Cherrinet has been rock-solid. Support resolved my one issue within an hour.",
+      "We've got multiple phones, TVs and laptops connected all day, and somehow everything still runs smoothly. That's been a huge relief.",
     thumbnail:
       "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     duration: "0:58",
@@ -37,7 +37,7 @@ const videos: VideoTestimonial[] = [
     location: "T. Nagar",
     role: "Homemaker",
     quote:
-      "The bundled OTT plans are a game-changer. My family gets fast internet and streaming at an unbeatable price.",
+      "My kids are watching YouTube, I'm on a work call, and someone's streaming a movie. Cherrinet handles all of it without slowing down.",
     thumbnail:
       "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     duration: "1:42",
@@ -47,7 +47,7 @@ const videos: VideoTestimonial[] = [
     location: "Thiruvanmiyur",
     role: "Small Business Owner",
     quote:
-      "I run a small business from home. Cherrinet's static IP and reliable connection have been critical to keeping us online.",
+      "I work from home full-time, so a stable connection isn't a luxury for me. Cherrinet has been reliable when it matters most.",
     thumbnail:
       "https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
     duration: "1:11",
@@ -127,11 +127,10 @@ export function VideoTestimonials() {
               key={v.name}
               type="button"
               onClick={() => setActive(i)}
-              className={`relative aspect-video rounded-lg overflow-hidden cursor-pointer transition-all ${
-                i === active
-                  ? "ring-2 ring-primary ring-offset-2"
-                  : "opacity-60 hover:opacity-100"
-              }`}
+              className={`relative aspect-video rounded-lg overflow-hidden cursor-pointer transition-all ${i === active
+                ? "ring-2 ring-primary ring-offset-2"
+                : "opacity-60 hover:opacity-100"
+                }`}
             >
               <ImageWithFallback
                 src={v.thumbnail}
