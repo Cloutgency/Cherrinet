@@ -37,12 +37,12 @@ const testimonials = [
 ];
 
 const milestones = [
-  { year: "2015", event: <><span className="font-semibold text-primary/40">The Beginning</span><br />Started our journey with a vision to make reliable fiber connectivity more accessible.</> },
-  { year: "2017", event: <><span className="font-semibold text-primary/40">10,000 Connections Strong</span><br />Reached our first major subscriber milestone.</> },
-  { year: "2019", event: <><span className="font-semibold text-primary/40">Expanding Our Reach</span><br />Serving more homes across more communities than ever before.</> },
-  { year: "2021", event: <><span className="font-semibold text-primary/40">Stepping Into Gigabit Speeds</span><br />Launched high-speed plans designed for modern digital lifestyles.</> },
-  { year: "2023", event: <><span className="font-semibold text-primary/40">Trusted By Thousands</span><br />Crossed 100,000 subscribers and received industry recognition.</> },
-  { year: "2025", event: <><span className="font-semibold text-primary/40">Looking Ahead</span><br />Continuing to grow our network and deliver better connectivity experiences.</> },
+  { year: "2015", event: <><span className="font-semibold text-primary">The Beginning</span><br />Started our journey with a vision to make reliable fiber connectivity more accessible.</> },
+  { year: "2017", event: <><span className="font-semibold text-primary">10,000 Connections Strong</span><br />Reached our first major subscriber milestone.</> },
+  { year: "2019", event: <><span className="font-semibold text-primary">Expanding Our Reach</span><br />Serving more homes across more communities than ever before.</> },
+  { year: "2021", event: <><span className="font-semibold text-primary">Stepping Into Gigabit Speeds</span><br />Launched high-speed plans designed for modern digital lifestyles.</> },
+  { year: "2023", event: <><span className="font-semibold text-primary">Trusted By Thousands</span><br />Crossed 100,000 subscribers and received industry recognition.</> },
+  { year: "2025", event: <><span className="font-semibold text-primary">Looking Ahead</span><br />Continuing to grow our network and deliver better connectivity experiences.</> },
 ];
 
 export function About() {
@@ -132,7 +132,7 @@ export function About() {
                   )}
                 </div>
                 <div className="pb-8">
-                  <p className="text-sm text-primary">{m.year}</p>
+                  <p className="text-sm text-black font-semibold">{m.year}</p>
                   <p className="text-foreground text-sm mt-1">{m.event}</p>
                 </div>
               </div>
