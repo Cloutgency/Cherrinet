@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { ChevronDown, Search, Phone, Mail, MessageCircle, MapPin, Clock, Send, X, Bot, User, ArrowRight, FileText } from "lucide-react";
+import { ChevronDown, Search, Phone, Mail, MessageCircle, MapPin, Clock, ArrowRight, FileText } from "lucide-react";
 
 const faqCategories = [
   {
@@ -73,19 +73,9 @@ const faqCategories = [
   },
 ];
 
-interface ChatMessage {
-  from: "user" | "bot";
-  text: string;
-}
-
 export function Support() {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
-  const [chatOpen, setChatOpen] = useState(false);
-  const [chatMessages, setChatMessages] = useState<ChatMessage[]>([
-    { from: "bot", text: "Hi! I'm Cherry, Cherrinet's virtual assistant. How can I help you today?" },
-  ]);
-  const [chatInput, setChatInput] = useState("");
 
   const toggleFaq = (id: string) => {
     setOpenFaq(openFaq === id ? null : id);
@@ -99,29 +89,6 @@ export function Support() {
         faq.a.toLowerCase().includes(searchQuery.toLowerCase())
     ),
   })).filter((cat) => cat.faqs.length > 0);
-
-  const handleChatSend = () => {
-    if (!chatInput.trim()) return;
-    const userMsg = chatInput.trim();
-    setChatMessages((prev) => [...prev, { from: "user", text: userMsg }]);
-    setChatInput("");
-
-    // Simulate bot response
-    setTimeout(() => {
-      let response = "Thanks for reaching out! Let me look into that for you. For immediate assistance, please call us at 044-1234-5678.";
-      const lower = userMsg.toLowerCase();
-      if (lower.includes("plan") || lower.includes("price")) {
-        response = "We offer plans starting from ₹499/month for 40 Mbps all the way up to ₹1,499/month for 1 Gbps. Visit our Plans page for detailed comparison!";
-      } else if (lower.includes("install")) {
-        response = "Installation is completely free and takes just 1-2 hours! Our team typically schedules within 24-48 hours of signup.";
-      } else if (lower.includes("slow") || lower.includes("speed") || lower.includes("issue")) {
-        response = "Sorry to hear about speed issues. Try restarting your router first. If the problem persists, our technical team can diagnose it remotely. Call 044-1234-5678.";
-      } else if (lower.includes("coverage") || lower.includes("area") || lower.includes("available")) {
-        response = "You can check coverage by entering your PIN code on our Coverage page. We currently serve 100+ localities across Chennai!";
-      }
-      setChatMessages((prev) => [...prev, { from: "bot", text: response }]);
-    }, 1000);
-  };
 
   return (
     <div className="flex flex-col">
@@ -157,8 +124,8 @@ export function Support() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 flex flex-col gap-8">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <a
-              href="tel:+914412345678"
-              aria-label="Call Cherrinet support at 044-1234-5678"
+              href="tel:+914449303030"
+              aria-label="Call Cherrinet support at +91 44 4930 3030"
               className="flex items-center gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
             >
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0">
@@ -166,7 +133,7 @@ export function Support() {
               </div>
               <div>
                 <p className="text-sm text-foreground">Call Us</p>
-                <p className="text-sm text-muted-foreground">044-1234-5678</p>
+                <p className="text-sm text-muted-foreground">+91 44 4930 3030</p>
               </div>
             </a>
             <a
@@ -182,11 +149,7 @@ export function Support() {
                 <p className="text-sm text-muted-foreground">support@cherrinet.in</p>
               </div>
             </a>
-            <button
-              type="button"
-              onClick={() => setChatOpen(true)}
-              className="flex items-center gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all cursor-pointer text-left"
-            >
+            <div className="flex items-center gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all">
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0">
                 <MessageCircle className="w-5 h-5 text-primary" aria-hidden="true" />
               </div>
@@ -194,7 +157,7 @@ export function Support() {
                 <p className="text-sm text-foreground">Live Chat</p>
                 <p className="text-sm text-muted-foreground">Chat with Cherry Bot</p>
               </div>
-            </button>
+            </div>
           </div>
 
           {/* Contact form CTA */}
@@ -290,7 +253,7 @@ export function Support() {
                 <p>Live Chat: 24/7</p>
                 <p>Walk-in Center: Mon-Sat, 10 AM - 7 PM</p>
               </div>
-            </div>
+            </div>{/*
             <div className="flex flex-col gap-4 p-6 rounded-2xl border border-border">
               <MapPin className="w-6 h-6 text-primary" />
               <h3 className="text-foreground">Service Center</h3>
@@ -300,100 +263,10 @@ export function Support() {
                 <p>Chennai - 600018</p>
                 <p>Near US Consulate</p>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
       </section>
-
-      {/* Chat Widget */}
-      {chatOpen && (
-        <div className="fixed bottom-4 right-4 z-50 w-[360px] max-w-[calc(100vw-2rem)] bg-white rounded-2xl shadow-2xl border border-border flex flex-col overflow-hidden">
-          {/* Header */}
-          <div className="flex items-center justify-between p-4 bg-primary text-white">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
-                <Bot className="w-4 h-4" />
-              </div>
-              <div>
-                <p className="text-sm">Cherry Bot</p>
-                <p className="text-xs text-[#FBEEEF]">Online</p>
-              </div>
-            </div>
-            <button
-              onClick={() => setChatOpen(false)}
-              className="p-1 rounded hover:bg-white/20 transition-colors cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-
-          {/* Messages */}
-          <div className="flex-1 p-4 flex flex-col gap-3 max-h-80 overflow-y-auto">
-            {chatMessages.map((msg, i) => (
-              <div
-                key={i}
-                className={`flex items-start gap-2 ${msg.from === "user" ? "flex-row-reverse" : ""}`}
-              >
-                <div
-                  className={`w-7 h-7 rounded-full flex items-center justify-center shrink-0 ${
-                    msg.from === "bot" ? "bg-secondary" : "bg-primary"
-                  }`}
-                >
-                  {msg.from === "bot" ? (
-                    <Bot className="w-3.5 h-3.5 text-primary" />
-                  ) : (
-                    <User className="w-3.5 h-3.5 text-white" />
-                  )}
-                </div>
-                <div
-                  className={`px-3.5 py-2.5 rounded-2xl text-sm max-w-[75%] ${
-                    msg.from === "bot"
-                      ? "bg-muted text-foreground rounded-tl-md"
-                      : "bg-primary text-white rounded-tr-md"
-                  }`}
-                >
-                  {msg.text}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Input */}
-          <div className="p-3 border-t border-border">
-            <div className="flex gap-2">
-              <input
-                type="text"
-                value={chatInput}
-                onChange={(e) => setChatInput(e.target.value)}
-                onKeyDown={(e) => e.key === "Enter" && handleChatSend()}
-                placeholder="Type a message..."
-                className="flex-1 px-4 py-2.5 rounded-xl bg-muted border-0 text-sm focus:outline-none focus:ring-2 focus:ring-primary/20"
-              />
-              <button
-                onClick={handleChatSend}
-                disabled={!chatInput.trim()}
-                className={`p-2.5 rounded-xl transition-colors cursor-pointer ${
-                  chatInput.trim()
-                    ? "bg-primary text-white hover:bg-[#8E1B22]"
-                    : "bg-muted text-muted-foreground"
-                }`}
-              >
-                <Send className="w-4 h-4" />
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Chat FAB (when chat is closed) */}
-      {!chatOpen && (
-        <button
-          onClick={() => setChatOpen(true)}
-          className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary text-white rounded-full shadow-lg flex items-center justify-center hover:bg-[#8E1B22] transition-colors cursor-pointer hover:scale-105"
-        >
-          <MessageCircle className="w-6 h-6" />
-        </button>
-      )}
     </div>
   );
 }

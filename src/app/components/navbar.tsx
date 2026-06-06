@@ -5,7 +5,6 @@ import cherrinetLogo from "../../imports/image-1.png";
 
 const navLinks = [
   { label: "Plans", path: "/plans" },
-  { label: "Products", path: "/products" },
   { label: "Coverage", path: "/coverage" },
   { label: "About Us", path: "/about" },
   { label: "Support", path: "/support" },
@@ -51,11 +50,11 @@ export function Navbar() {
           {/* CTA + Phone */}
           <div className="hidden lg:flex items-center gap-4">
             <a
-              href="tel:+914412345678"
+              href="tel:+914449303030"
               className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
             >
               <Phone className="w-4 h-4" />
-              044-1234-5678
+              +91 44 4930 3030
             </a>
             <Link
               to="/enquire"
@@ -99,11 +98,11 @@ export function Navbar() {
             ))}
             <div className="mt-3 pt-3 border-t border-border flex flex-col gap-3">
               <a
-                href="tel:+914412345678"
+                href="tel:+914449303030"
                 className="flex items-center gap-2 px-4 py-2 text-sm text-muted-foreground"
               >
                 <Phone className="w-4 h-4" />
-                044-1234-5678
+                +91 44 4930 3030
               </a>
               <Link
                 to="/enquire"

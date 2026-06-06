@@ -3,7 +3,8 @@ import { MapPin, CheckCircle, ArrowRight } from "lucide-react";
 import { CoverageChecker } from "../components/coverage-checker";
 import { LeadCaptureForm } from "../components/lead-capture-form";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
-import { TamilNaduMap, tamilNaduDistricts } from "../components/tamil-nadu-map";
+import { CoverageAreasModal } from "../components/coverage-areas-modal";
+import { COVERAGE_AREAS } from "../data/coverageAreas";
 import type { Plan } from "../components/plan-card";
 
 const eligiblePlans: Plan[] = [
@@ -37,17 +38,15 @@ const eligiblePlans: Plan[] = [
   },
 ];
 
-const coveredAreas = [
-  "Adyar", "Anna Nagar", "Ashok Nagar", "Besant Nagar", "Chromepet",
-  "Egmore", "Guindy", "K.K. Nagar", "Kodambakkam", "Mylapore",
-  "Nungambakkam", "Porur", "T. Nagar", "Tambaram", "Teynampet",
-  "Thiruvanmiyur", "Velachery", "Virugambakkam",
-];
+const coveredAreas = COVERAGE_AREAS.slice(0, 18);
+const totalAreaCount = COVERAGE_AREAS.length;
+const districtCount = 28;
 
 export function Coverage() {
   const [isCovered, setIsCovered] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
+  const [showAreasModal, setShowAreasModal] = useState(false);
 
   const handleCovered = () => {
     setIsCovered(true);
@@ -71,11 +70,11 @@ export function Coverage() {
               </h1>
               <p className="text-muted-foreground max-w-md">
                 Cherrinet's fiber network spans across Tamil Nadu — bringing blazing fast,
-                reliable internet to {tamilNaduDistricts.length}+ districts and growing every day.
+                reliable internet to {districtCount}+ districts and growing every day.
               </p>
               <div className="flex items-center gap-6 mt-2">
                 <div className="flex flex-col">
-                  <span className="text-2xl text-primary">{tamilNaduDistricts.length}+</span>
+                  <span className="text-2xl text-primary">{districtCount}+</span>
                   <span className="text-xs text-muted-foreground uppercase tracking-wider">Districts</span>
                 </div>
                 <div className="w-px h-10 bg-border" />
@@ -91,7 +90,11 @@ export function Coverage() {
               </div>
             </div>
             <div className="flex justify-center">
-              <TamilNaduMap pins={tamilNaduDistricts} />
+              <img
+                src="/images/map.png"
+                alt="Tamil Nadu coverage map"
+                className="w-full max-w-none rounded-3xl shadow-xl border border-border object-cover h-[420px] sm:h-[520px] lg:h-[75vh] xl:h-[80vh]"
+              />
             </div>
           </div>
         </div>
@@ -220,8 +223,16 @@ export function Coverage() {
                 ))}
               </div>
               <p className="text-xs text-muted-foreground mt-4">
-                ...and 80+ more localities across Chennai
+                ...and {totalAreaCount - coveredAreas.length}+ more localities across Chennai
               </p>
+              <div className="mt-4">
+                <button
+                  onClick={() => setShowAreasModal(true)}
+                  className="text-sm px-3 py-2 bg-primary text-white rounded-lg"
+                >
+                  View all areas
+                </button>
+              </div>
             </div>
             <div className="rounded-2xl overflow-hidden">
               <ImageWithFallback
@@ -254,6 +265,14 @@ export function Coverage() {
             />
           </div>
         </div>
+      )}
+
+      {showAreasModal && (
+        <CoverageAreasModal
+          open={showAreasModal}
+          onClose={() => setShowAreasModal(false)}
+          areas={COVERAGE_AREAS}
+        />
       )}
     </div>
   );

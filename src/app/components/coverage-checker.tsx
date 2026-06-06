@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { MapPin, CheckCircle, XCircle, Loader2, Bell } from "lucide-react";
 import { useServiceableArea } from "../hooks/useServiceableArea";
+import { sendMail } from "../lib/email";
 
 interface CoverageCheckerProps {
   onCovered?: (pincode: string) => void;
@@ -12,6 +13,8 @@ export function CoverageChecker({ onCovered, compact = false }: CoverageCheckerP
     useServiceableArea();
   const [notifyEmail, setNotifyEmail] = useState("");
   const [notifySubmitted, setNotifySubmitted] = useState(false);
+  const [notifyError, setNotifyError] = useState<string | null>(null);
+  const [notifying, setNotifying] = useState(false);
   const [status, setStatus] = useState<"idle" | "checking" | "covered" | "not-covered">("idle");
 
   // Watch validationResult changes and update status accordingly
@@ -34,8 +37,26 @@ export function CoverageChecker({ onCovered, compact = false }: CoverageCheckerP
 
   const handleNotify = async () => {
     if (!notifyEmail) return;
-    await new Promise((r) => setTimeout(r, 800));
-    setNotifySubmitted(true);
+    setNotifyError(null);
+    setNotifying(true);
+
+    try {
+      await sendMail({
+        subject: `Coverage notify request for ${pincode || "unknown PIN"}`,
+        body: [
+          `PIN code: ${pincode || "N/A"}`,
+          `Notify email: ${notifyEmail}`,
+          "",
+          "A user requested coverage notification when this area becomes serviceable.",
+        ].join("\n"),
+      });
+      setNotifySubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setNotifyError("Unable to send notification request. Please try again later.");
+    } finally {
+      setNotifying(false);
+    }
   };
 
   return (
@@ -104,26 +125,37 @@ export function CoverageChecker({ onCovered, compact = false }: CoverageCheckerP
           </div>
 
           {!notifySubmitted ? (
-            <div className="flex gap-2">
-              <input
-                type="email"
-                value={notifyEmail}
-                onChange={(e) => setNotifyEmail(e.target.value)}
-                placeholder="Enter your email for updates"
-                className="flex-1 px-4 py-3 rounded-xl bg-input-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
-              />
-              <button
-                onClick={handleNotify}
-                disabled={!notifyEmail}
-                className={`px-5 py-3 rounded-xl text-sm transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
-                  notifyEmail
-                    ? "bg-foreground text-white hover:bg-gray-800"
-                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
-                }`}
-              >
-                <Bell className="w-4 h-4" />
-                Notify Me
-              </button>
+            <div className="flex flex-col gap-3">
+              <div className="flex gap-2">
+                <input
+                  type="email"
+                  value={notifyEmail}
+                  onChange={(e) => setNotifyEmail(e.target.value)}
+                  placeholder="Enter your email for updates"
+                  className="flex-1 px-4 py-3 rounded-xl bg-input-background border border-border text-sm focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-colors"
+                />
+                <button
+                  onClick={handleNotify}
+                  disabled={!notifyEmail || notifying}
+                  className={`px-5 py-3 rounded-xl text-sm transition-all cursor-pointer flex items-center gap-2 shrink-0 ${
+                    notifyEmail && !notifying
+                      ? "bg-foreground text-white hover:bg-gray-800"
+                      : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                  }`}
+                >
+                  {notifying ? (
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                  ) : (
+                    <>
+                      <Bell className="w-4 h-4" />
+                      Notify Me
+                    </>
+                  )}
+                </button>
+              </div>
+              {notifyError && (
+                <p className="text-sm text-destructive">{notifyError}</p>
+              )}
             </div>
           ) : (
             <div className="flex items-center gap-2 p-3 bg-green-50 rounded-xl text-sm text-green-700">

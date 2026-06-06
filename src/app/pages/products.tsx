@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Search, SlidersHorizontal, X, Phone, Mail, CheckCircle } from "lucide-react";
 import { ProductCard, type Product } from "../components/product-card";
+import { sendMail } from "../lib/email";
 
 const categories = [
   "All Products",
@@ -430,6 +431,8 @@ export function Products() {
   const [formData, setFormData] = useState({ name: "", phone: "", email: "" });
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const filteredProducts = allProducts.filter((p) => {
     const categoryMatch = activeCategory === "All Products" || p.category === activeCategory;
@@ -461,12 +464,39 @@ export function Products() {
     return errors;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errors = validate();
     setFormErrors(errors);
-    if (Object.keys(errors).length === 0) {
+    if (Object.keys(errors).length > 0) return;
+
+    const subject = `Cherrinet Product Enquiry - ${enquiryProduct?.name || "Product"}`;
+    const body = [
+      `Product: ${enquiryProduct?.name || "N/A"}`,
+      `Name: ${formData.name}`,
+      `Phone: +91 ${formData.phone}`,
+      `Email: ${formData.email}`,
+      "",
+      "Please contact this customer regarding the product enquiry.",
+      "",
+      "Source: Cherrinet product enquiry form",
+    ].join("\n");
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await sendMail({
+        subject,
+        body,
+        replyTo: formData.email.trim(),
+      });
       setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Unable to send your enquiry. Please try again later.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -632,14 +662,14 @@ export function Products() {
             </div>
             <div className="flex items-center gap-3">
               <a
-                href="tel:+914412345678"
+                href="tel:+914449303030"
                 className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-lg text-sm hover:bg-[#8E1B22] transition-colors"
               >
                 <Phone className="w-4 h-4" />
                 Call Us
               </a>
               <a
-                href="mailto:products@cherrinet.in"
+                href="mailto:support@cherrinet.in"
                 className="flex items-center gap-2 border border-gray-600 text-gray-300 px-5 py-2.5 rounded-lg text-sm hover:bg-gray-800 transition-colors"
               >
                 <Mail className="w-4 h-4" />
@@ -736,16 +766,21 @@ export function Products() {
                     {formErrors.email && <span className="text-xs text-[#B2222B]">{formErrors.email}</span>}
                   </div>
 
+                  {submitError && (
+                    <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                      {submitError}
+                    </div>
+                  )}
                   <button
                     type="submit"
-                    disabled={!isFormValid}
+                    disabled={!isFormValid || submitting}
                     className={`mt-2 py-3 rounded-xl text-sm transition-colors cursor-pointer ${
-                      isFormValid
+                      isFormValid && !submitting
                         ? "bg-primary text-white hover:bg-[#8E1B22]"
                         : "bg-muted text-muted-foreground cursor-not-allowed"
                     }`}
                   >
-                    Submit Enquiry
+                    {submitting ? "Sending…" : "Submit Enquiry"}
                   </button>
                 </form>
               </>

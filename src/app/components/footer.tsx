@@ -1,6 +1,14 @@
 import { Link } from "react-router";
-import { Facebook, Twitter, Instagram, Youtube, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, MapPin, Phone, Mail } from "lucide-react";
 import cherrinetLogo from "../../imports/image-1.png";
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 448 512" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M380.9 97.1C339 55.2 285.6 32 229.3 32 103 32 0 135 0 261.3c0 46.3 12.1 91.5 35.1 130.9L0 480l92.2-30.4c37.5 20.5 80 31.2 123.7 31.2h.1c126.3 0 229.3-103 229.3-229.3 0-56.3-23.1-109.7-65.3-151.4zm-151.6 320.5c-36.9 0-73.1-10-104.9-28.9l-7.5-4.4-54.5 18 18.3-53.4-4.9-8c-21.4-34.9-32.6-75.5-32.6-117.8 0-115 93.8-208.8 209-208.8 55.9 0 108.4 21.8 147.7 61.4 39.3 39.5 61.1 92.8 61.1 149.4 0 115.2-93.8 209-209 209zm113.2-149.4c-6.3-3.1-37.1-18.3-42.8-20.3-5.7-2-9.8-3.1-13.9 3.1-4.1 6.3-15.9 20.3-19.5 24.4-3.6 4.1-7.2 4.6-13.5 1.5-36.5-18.3-60.4-32.7-84.5-74.6-6.8-11.8 6.8-11 19.6-36.4 2.2-4.1 1.1-7.6-.5-10.7-1.5-3-14-33.5-19.2-45.9-5.1-12.4-10.3-10.7-13.9-10.9-3.6-.2-7.8-.2-12-0.2-4.1 0-10.7 1.5-16.3 7.6-5.7 6.1-21.9 21.4-21.9 52.4 0 31.1 22.5 61.3 25.6 65.6 3.1 4.1 44.2 67.5 107.1 94.8 59.4 25.8 59.4 17.2 70.2 16 10.7-1.2 34.8-14.2 39.7-28 4.9-13.8 4.9-25.6 3.5-28.1-1.4-2.5-5.6-3.9-11.8-6.9z" />
+    </svg>
+  );
+}
 
 export function Footer() {
   return (
@@ -18,15 +26,23 @@ export function Footer() {
               Chennai's fastest growing Fibernet provider. Delivering blazing-fast internet to homes and businesses across the city.
             </p>
             <div className="flex items-center gap-3 mt-2">
-              {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
-                >
-                  <Icon className="w-4 h-4" />
-                </a>
-              ))}
+              <a
+                href="https://www.instagram.com/cherrinetsocial?igsh=MW1oenhjMTFxc2pkag=="
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+              >
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a
+                href="https://wa.me/917358228999"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Cherrinet WhatsApp"
+              >
+                <WhatsAppIcon className="w-4 h-4" />
+              </a>
             </div>
           </div>
 
@@ -36,7 +52,6 @@ export function Footer() {
             {[
               { label: "Home", path: "/" },
               { label: "Plans & Pricing", path: "/plans" },
-              { label: "Products & Hardware", path: "/products" },
               { label: "Check Coverage", path: "/coverage" },
               { label: "About Us", path: "/about" },
               { label: "Support", path: "/support" },
@@ -69,16 +84,16 @@ export function Footer() {
           {/* Contact */}
           <div className="flex flex-col gap-4">
             <h4 className="text-white mb-1">Contact Us</h4>
-            <div className="flex items-start gap-3">
+            {/*<div className="flex items-start gap-3">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
-              <p className="text-sm text-gray-400">
+               <p className="text-sm text-gray-400">
                 No. 42, Anna Salai, Teynampet, Chennai - 600018
               </p>
-            </div>
+            </div>*/}
             <div className="flex items-center gap-3">
               <Phone className="w-4 h-4 shrink-0 text-primary" />
-              <a href="tel:+914412345678" className="text-sm text-gray-400 hover:text-white transition-colors">
-                044-1234-5678
+              <a href="tel:+914449303030" className="text-sm text-gray-400 hover:text-white transition-colors">
+                +91 44 4930 3030
               </a>
             </div>
             <div className="flex items-center gap-3">

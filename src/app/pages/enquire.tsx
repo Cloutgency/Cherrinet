@@ -1,27 +1,22 @@
 import { useState } from "react";
 import { CheckCircle2, ArrowRight, MessageSquare, Sparkles } from "lucide-react";
+import { sendMail } from "../lib/email";
 
 type EnquiryType = "new-connection" | "additional-services" | "general";
 
 const planOptions = [
   { id: "", label: "Select a plan" },
-  { id: "starter", label: "Starter — 40 Mbps · ₹499/mo" },
-  { id: "essential", label: "Essential — 75 Mbps · ₹599/mo" },
-  { id: "pro", label: "Pro — 100 Mbps · ₹699/mo" },
-  { id: "turbo", label: "Turbo — 200 Mbps · ₹899/mo" },
-  { id: "ultra", label: "Ultra — 300 Mbps · ₹999/mo" },
-  { id: "gigabit", label: "Gigabit — 1 Gbps · ₹1499/mo" },
+  { id: "budget", label: "Budget Plan — 50 Mbps · ₹479/mo" },
+  { id: "family", label: "Family Plan — 100 Mbps · ₹679/mo" },
+  { id: "premium-150", label: "Premium Plan — 150 Mbps · ₹799/mo" },
+  { id: "premium-200", label: "Premium Plan — 200 Mbps · ₹999/mo" },
+  { id: "premium-500", label: "Premium Plan — 500 Mbps · ₹1199/mo" },
+  { id: "power", label: "Power Plan — 1000 Mbps · ₹1999/mo" },
   { id: "custom", label: "Custom plan (talk to us)" },
 ];
 
 const addOnServices = [
-  "Wi-Fi 6 Router upgrade",
-  "Mesh extender / system",
-  "Static IP address",
   "OTT bundle (Hotstar / ZEE5 / SonyLIV)",
-  "Landline / VoIP",
-  "On-site installation support",
-  "Business email & domain",
 ];
 
 const connectionTypes = ["Home (Residential)", "Business / Office"];
@@ -29,6 +24,8 @@ const connectionTypes = ["Home (Residential)", "Business / Office"];
 export function Enquire() {
   const [enquiryType, setEnquiryType] = useState<EnquiryType>("new-connection");
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const [form, setForm] = useState({
     name: "",
@@ -85,9 +82,47 @@ export function Enquire() {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (valid) setSubmitted(true);
+    if (!valid) return;
+
+    const subject = `Cherrinet Enquiry - ${form.name}`;
+    const body = [
+      `Name: ${form.name}`,
+      `Mobile: +91 ${form.mobile}`,
+      `Alternate Mobile: ${form.altMobile || "N/A"}`,
+      `Email: ${form.email}`,
+      `PIN code: ${form.pincode}`,
+      `Locality: ${form.locality}`,
+      `Address: ${form.address}`,
+      `Connection Type: ${form.connectionType}`,
+      `Preferred Plan: ${form.plan || "N/A"}`,
+      `Services: ${form.services.length > 0 ? form.services.join(", ") : "None"}`,
+      `Upgrade Plan: ${form.upgradePlan || "N/A"}`,
+      `Message: ${form.message || "None"}`,
+      `Consent: ${form.consent ? "Yes" : "No"}`,
+      "",
+      "Please respond to this enquiry as soon as possible.",
+      "",
+      "Source: Cherrinet website enquiry form",
+    ].join("\n");
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      await sendMail({
+        subject,
+        body,
+        replyTo: form.email.trim(),
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Unable to send your enquiry. Please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -441,12 +476,17 @@ export function Enquire() {
               </span>
             </label>
 
+            {submitError && (
+              <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+                {submitError}
+              </div>
+            )}
             <button
               type="submit"
-              disabled={!valid}
+              disabled={!valid || submitting}
               className="w-full bg-primary text-white py-3.5 rounded-xl text-sm hover:bg-[#8E1B22] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
             >
-              Submit Enquiry
+              {submitting ? "Sending…" : "Submit Enquiry"}
               <ArrowRight className="w-4 h-4" />
             </button>
 

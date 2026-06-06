@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, FormEvent } from "react";
 import { FileText, CreditCard, X, CheckCircle2, ArrowRight, Lock } from "lucide-react";
+import { sendMail } from "../../lib/email";
 
 type Modal = null | "enquire" | "quickpay";
 
@@ -89,17 +90,58 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
     bandwidth: "",
     timeline: "",
     contactTime: "",
-    addons: [] as string[],
     notes: "",
     consent: false,
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const toggleAddon = (a: string) =>
-    setForm((f) => ({
-      ...f,
-      addons: f.addons.includes(a) ? f.addons.filter((x) => x !== a) : [...f.addons, a],
-    }));
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!valid) return;
+
+    setSubmitting(true);
+    setSubmitError(null);
+
+    const subject = `Cherrinet G-Force enquiry from ${form.name}`;
+    const body = [
+      `Company: ${form.company}`,
+      `Industry: ${form.industry || "N/A"}`,
+      `GSTIN: ${form.gstin || "N/A"}`,
+      `Name: ${form.name}`,
+      `Designation: ${form.designation}`,
+      `Email: ${form.email}`,
+      `Phone: +91 ${form.phone}`,
+      `Alternate phone: ${form.altPhone || "N/A"}`,
+      `City: ${form.city}`,
+      `Office address: ${form.address || "N/A"}`,
+      `Seats: ${form.seats}`,
+      `Plan: ${form.plan}`,
+      `Bandwidth: ${form.bandwidth || "N/A"}`,
+      `Timeline: ${form.timeline}`,
+      `Preferred contact time: ${form.contactTime}`,
+      `Notes: ${form.notes || "None"}`,
+      `Consent: ${form.consent ? "Yes" : "No"}`,
+      "",
+      "Please respond to this enquiry within 24 hours.",
+      "Source: Cherrinet G-Force subscription page enquiry modal",
+    ].join("\n");
+
+    try {
+      await sendMail({
+        subject,
+        body,
+        replyTo: form.email.trim(),
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Unable to send your enquiry. Please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   const valid =
     form.company.length >= 2 &&
@@ -144,13 +186,7 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
             <p className="text-sm text-muted-foreground mb-6">
               Share a few details about your business — our G-Force team will craft a tailored quote within 24 hours.
             </p>
-            <form
-              className="flex flex-col gap-6"
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (valid) setSubmitted(true);
-              }}
-            >
+            <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
               {/* Company details */}
               <fieldset className="flex flex-col gap-4">
                 <legend className="text-xs uppercase tracking-wider text-muted-foreground mb-1">
@@ -297,11 +333,13 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
                   onChange={(v) => setForm({ ...form, plan: v })}
                   required
                   options={[
-                    "Startup — 200 Mbps",
-                    "Growth — 500 Mbps",
-                    "Business — 1 Gbps",
-                    "Pro — 2 Gbps",
-                    "Enterprise — 5 Gbps",
+                    "G-FORCE 2 — 1 Gbps (FUP 4TB)",
+                    "G-FORCE 6 — 1 Gbps (FUP 12TB)",
+                    "G-FORCE 10 — 1 Gbps (FUP 20TB)",
+                    "SME SILVER — 250 Mbps (FUP 2250 GB)",
+                    "SME GOLD — 250 Mbps (FUP 3250 GB)",
+                    "SME DIAMOND — 250 Mbps (FUP 4250 GB)",
+                    "SME PLATINUM — 250 Mbps (FUP 5250 GB)",
                     "Custom plan (tell us your requirement)",
                     "Not sure yet — recommend one",
                   ]}
@@ -314,34 +352,6 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
                     placeholder="e.g. 10 Gbps dedicated, 200 concurrent users"
                   />
                 )}
-                <div className="flex flex-col gap-2">
-                  <span className="text-sm text-foreground">Add-on services (optional)</span>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                    {[
-                      "Static IP",
-                      "Mesh Wi-Fi coverage",
-                      "Wi-Fi 6 router",
-                      "SD-WAN",
-                      "Managed firewall",
-                      "24×7 priority support",
-                      "Failover / secondary link",
-                      "On-site installation",
-                    ].map((a) => (
-                      <label
-                        key={a}
-                        className="flex items-center gap-2 px-3 py-2 rounded-lg border border-border text-sm cursor-pointer hover:bg-muted/50 has-[:checked]:border-primary has-[:checked]:bg-secondary/50"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={form.addons.includes(a)}
-                          onChange={() => toggleAddon(a)}
-                          className="accent-primary"
-                        />
-                        {a}
-                      </label>
-                    ))}
-                  </div>
-                </div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <SelectField
                     label="Timeline"
@@ -391,12 +401,16 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
                 </span>
               </label>
 
+              {submitError && (
+                <p className="text-sm text-destructive">{submitError}</p>
+              )}
+
               <button
                 type="submit"
-                disabled={!valid}
+                disabled={!valid || submitting}
                 className="w-full bg-primary text-white py-3 rounded-xl text-sm hover:bg-[#8E1B22] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
-                Submit enquiry
+                {submitting ? "Sending enquiry…" : "Submit enquiry"}
               </button>
             </form>
           </>
@@ -409,6 +423,7 @@ function EnquireModal({ onClose }: { onClose: () => void }) {
 function QuickPayModal({ onClose }: { onClose: () => void }) {
   const [form, setForm] = useState({ accountId: "", amount: "" });
   const [paid, setPaid] = useState(false);
+  const paymentGatewayIntegrated = false;
   const valid = /^G-\d{6}$/.test(form.accountId) && Number(form.amount) > 0;
 
   return (
@@ -450,7 +465,7 @@ function QuickPayModal({ onClose }: { onClose: () => void }) {
               className="flex flex-col gap-4"
               onSubmit={(e) => {
                 e.preventDefault();
-                if (valid) setPaid(true);
+                if (valid && paymentGatewayIntegrated) setPaid(true);
               }}
             >
               <Field
@@ -472,13 +487,15 @@ function QuickPayModal({ onClose }: { onClose: () => void }) {
               />
               <button
                 type="submit"
-                disabled={!valid}
+                disabled={!valid || !paymentGatewayIntegrated}
                 className="mt-2 w-full bg-primary text-white py-3 rounded-xl text-sm hover:bg-[#8E1B22] transition-colors disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer"
               >
-                Proceed to Pay
+                {paymentGatewayIntegrated ? "Proceed to Pay" : "Payment gateway unavailable"}
               </button>
               <p className="text-xs text-muted-foreground text-center">
-                Demo portal · no real charge
+                {paymentGatewayIntegrated
+                  ? "Demo portal · no real charge"
+                  : "Payment gateway integration pending. Success result is disabled until integration is complete."}
               </p>
             </form>
           </>

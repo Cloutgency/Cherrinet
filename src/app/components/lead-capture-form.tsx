@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { CheckCircle, AlertCircle, Loader2 } from "lucide-react";
 import { validatePincode, isServiceableArea } from "../data/pincodes";
+import { sendMail } from "../lib/email";
 import type { Plan } from "./plan-card";
 
 interface LeadCaptureFormProps {
@@ -35,6 +36,7 @@ export function LeadCaptureForm({ selectedPlan, onClose }: LeadCaptureFormProps)
   const [touched, setTouched] = useState<Record<string, boolean>>({});
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = (data: FormData): FormErrors => {
     const errs: FormErrors = {};
@@ -88,11 +90,35 @@ export function LeadCaptureForm({ selectedPlan, onClose }: LeadCaptureFormProps)
     setErrors(errs);
     if (Object.keys(errs).length > 0) return;
 
+    const subject = `Cherrinet Lead Request - ${formData.name}`;
+    const body = [
+      `Name: ${formData.name}`,
+      `Phone: +91 ${formData.phone}`,
+      `Email: ${formData.email || "N/A"}`,
+      `Pincode: ${formData.pincode}`,
+      `Selected Plan: ${formData.plan || "N/A"}`,
+      "",
+      "Please contact this lead to confirm installation details.",
+      "",
+      "Source: Cherrinet website lead capture form",
+    ].join("\n");
+
     setSubmitting(true);
-    // Simulate API call
-    await new Promise((r) => setTimeout(r, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
+    setSubmitError(null);
+
+    try {
+      await sendMail({
+        subject,
+        body,
+        replyTo: formData.email?.trim() ? formData.email.trim() : undefined,
+      });
+      setSubmitted(true);
+    } catch (error) {
+      console.error(error);
+      setSubmitError("Unable to send your request. Please try again later.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -246,6 +272,12 @@ export function LeadCaptureForm({ selectedPlan, onClose }: LeadCaptureFormProps)
           </div>
         )}
       </div>
+
+      {submitError && (
+        <div className="rounded-xl border border-destructive/20 bg-destructive/10 px-4 py-3 text-sm text-destructive">
+          {submitError}
+        </div>
+      )}
 
       {/* Submit */}
       <button

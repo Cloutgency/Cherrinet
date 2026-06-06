@@ -19,46 +19,83 @@ const stats = [
 
 const plans = [
   {
-    name: "Starter",
-    tagline: "For light browsing & social media",
-    speed: "40",
-    price: "499",
+    name: "Budget Plan",
+    tagline: "50 Mbps for light browsing",
+    speed: "50",
+    price: "479",
     data: "Unlimited",
-    benefits: [
-      "1 device streaming",
-      "Free router included",
-      "No installation charges",
-    ],
     ott: [],
+    benefits: [
+      "Ideal for browsing and social media",
+      "Unlimited data",
+      "Free router included",
+    ],
   },
   {
-    name: "Pro",
-    tagline: "Best for families & WFH",
+    name: "Family Plan",
+    tagline: "100 Mbps for family streaming",
     speed: "100",
-    price: "699",
+    price: "679",
+    data: "Unlimited",
+    ott: [],
+    benefits: [
+      "Perfect for multiple users",
+      "Unlimited data",
+      "Free dual-band router",
+    ],
+  },
+  {
+    name: "Premium Plan",
+    tagline: "150 Mbps for heavy streaming",
+    speed: "150",
+    price: "799",
     popular: true,
     data: "Unlimited",
+    ott: [],
     benefits: [
-      "HD & 4K streaming",
-      "3 devices simultaneous",
-      "Free Wi-Fi 6 router",
-      "Priority customer support",
+      "Great for 4K streaming",
+      "Unlimited data",
+      "High-performance router included",
     ],
-    ott: ["Hotstar", "ZEE5"],
   },
   {
-    name: "Ultra",
-    tagline: "For power users & gamers",
-    speed: "300",
+    name: "Premium Plan",
+    tagline: "200 Mbps for gaming and work",
+    speed: "200",
     price: "999",
     data: "Unlimited",
+    ott: [],
     benefits: [
-      "4K + 8K streaming ready",
-      "Unlimited device connections",
-      "Wi-Fi 6E mesh system",
-      "VIP support with SLA",
+      "Optimized for gaming and remote work",
+      "Unlimited data",
+      "Free Wi-Fi 6 router",
     ],
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Prime"],
+  },
+  {
+    name: "Premium Plan",
+    tagline: "500 Mbps for large homes",
+    speed: "500",
+    price: "1199",
+    data: "Unlimited",
+    ott: [],
+    benefits: [
+      "Two routers included",
+      "Unlimited data",
+      "Best for multiple streaming devices",
+    ],
+  },
+  {
+    name: "Power Plan",
+    tagline: "1000 Mbps for premium users",
+    speed: "1000",
+    price: "1999",
+    data: "Unlimited",
+    ott: [],
+    benefits: [
+      "Ultimate speed for big homes and offices",
+      "Unlimited data",
+      "Two high-speed routers included",
+    ],
   },
 ];
 
@@ -181,7 +218,7 @@ export function Home() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-5xl mx-auto items-stretch">
-            {plans.map((plan, i) => (
+            {plans.slice(0, 3).map((plan, i) => (
               <div
                 key={i}
                 className={`relative flex flex-col gap-5 p-7 rounded-2xl border-2 transition-all hover:shadow-lg ${plan.popular
@@ -231,7 +268,7 @@ export function Home() {
                 </ul>
 
                 {/* OTT */}
-                {plan.ott.length > 0 && (
+                {plan.ott?.length > 0 && (
                   <div className="flex flex-col gap-2 pt-3 border-t border-border">
                     <div className="flex items-center gap-2">
                       <Tv className="w-4 h-4 text-primary" />
