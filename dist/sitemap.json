@@ -1,0 +1,17 @@
+{
+  "routes": [
+    "/",
+    "/plans",
+    "/coverage",
+    "/about",
+    "/support",
+    "/enquire",
+    "/gforce",
+    "/gforce/plans",
+    "/gforce/coverage",
+    "/gforce/subscribe",
+    "/gforce/support"
+  ],
+  "api": ["/api/send-mail"],
+  "assetsBase": "/images/"
+}
