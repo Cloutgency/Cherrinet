@@ -24,7 +24,7 @@ const plans = [
     speed: "50",
     price: "479",
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Ideal for browsing and social media",
       "Unlimited data",
@@ -37,7 +37,7 @@ const plans = [
     speed: "100",
     price: "679",
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Perfect for multiple users",
       "Unlimited data",
@@ -51,7 +51,7 @@ const plans = [
     price: "799",
     popular: true,
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Great for 4K streaming",
       "Unlimited data",
@@ -64,7 +64,7 @@ const plans = [
     speed: "200",
     price: "999",
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Optimized for gaming and remote work",
       "Unlimited data",
@@ -77,7 +77,7 @@ const plans = [
     speed: "500",
     price: "1199",
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Two routers included",
       "Unlimited data",
@@ -90,7 +90,7 @@ const plans = [
     speed: "1000",
     price: "1999",
     data: "Unlimited",
-    ott: [],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     benefits: [
       "Ultimate speed for big homes and offices",
       "Unlimited data",

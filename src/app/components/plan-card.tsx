@@ -83,6 +83,7 @@ export function PlanCard({ plan, onSelect }: PlanCardProps) {
                 </span>
               ))}
             </div>
+              <p className="text-xs text-muted-foreground mt-2">All OTTs available from Rs.29/month</p>
           </div>
         )}
       </div>

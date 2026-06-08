@@ -15,7 +15,7 @@ const eligiblePlans: Plan[] = [
     price: 599,
     data: "Unlimited",
     benefits: ["HD streaming", "Free dual-band router"],
-    ott: ["Hotstar"],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
   },
   {
     id: "pro",
@@ -24,7 +24,7 @@ const eligiblePlans: Plan[] = [
     price: 699,
     data: "Unlimited",
     benefits: ["4K streaming", "Wi-Fi 6 router", "Priority support"],
-    ott: ["Hotstar", "ZEE5"],
+    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
     popular: true,
   },
   {
