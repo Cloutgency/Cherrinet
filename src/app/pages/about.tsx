@@ -164,7 +164,7 @@ export function About() {
       {/* Image Banner */}
       <section className="relative h-64 sm:h-80 overflow-hidden">
         <ImageWithFallback
-          src="https://images.unsplash.com/photo-1751487531325-59d97f6874f0?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxoYXBweSUyMGZhbWlseSUyMHdhdGNoaW5nJTIwdGVsZXZpc2lvbiUyMHN0cmVhbWluZ3xlbnwxfHx8fDE3NzI1MjI3Mzd8MA&ixlib=rb-4.1.0&q=80&w=1080"
+          src="/images/Cherrinet_image.png"
           alt="Happy family"
           className="w-full h-full object-cover"
         />

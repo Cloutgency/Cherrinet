@@ -18,14 +18,14 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Home },
       { path: "plans", Component: Plans },
-      { path: "coverage", Component: Coverage },
-      { path: "about", Component: About },
+      { path: "cherrinet-coverage", Component: Coverage },
+      { path: "about-us", Component: About },
       { path: "support", Component: Support },
-      { path: "enquire", Component: Enquire },
+      { path: "contact-us", Component: Enquire },
     ],
   },
   {
-    path: "/gforce",
+    path: "/g-force",
     Component: GForceLayout,
     children: [
       { index: true, Component: GForceLanding },

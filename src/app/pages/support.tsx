@@ -196,7 +196,7 @@ export function Support() {
               </p>
             </div>
             <Link
-              to="/enquire"
+              to="/contact-us"
               className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl text-sm hover:bg-[#8E1B22] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors w-full sm:w-auto justify-center"
             >
               Contact Us

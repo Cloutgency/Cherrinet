@@ -344,7 +344,7 @@ export function Home() {
                 </div>
               </div>
               <Link
-                to="/about"
+                to="/about-us"
                 className="mt-2 inline-flex items-center gap-2 text-[#D1444C] hover:text-[#E47A82] transition-colors text-sm w-fit"
               >
                 Learn more about us
@@ -380,7 +380,7 @@ export function Home() {
                 Browse Plans
               </Link>
               <Link
-                to="/coverage"
+                to="/cherrinet-coverage"
                 className="border border-white/40 text-white px-7 py-3.5 rounded-xl text-sm hover:bg-white/10 transition-colors"
               >
                 Check Coverage

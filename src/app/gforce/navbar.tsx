@@ -4,10 +4,10 @@ import { Menu, X, ArrowLeft } from "lucide-react";
 import cherrinetLogo from "../../imports/image-1.png";
 
 const navLinks = [
-  { label: "Plans", path: "/gforce/plans" },
-  { label: "Coverage", path: "/gforce/coverage" },
-  { label: "Subscribe", path: "/gforce/subscribe" },
-  { label: "Support", path: "/gforce/support" },
+  { label: "Plans", path: "/g-force/plans" },
+  { label: "Coverage", path: "/g-force/coverage" },
+  { label: "Subscribe", path: "/g-force/subscribe" },
+  { label: "Support", path: "/g-force/support" },
 ];
 
 export function GForceNavbar() {
@@ -18,7 +18,7 @@ export function GForceNavbar() {
     <nav className="sticky top-0 z-50 bg-gray-950/95 backdrop-blur-md border-b border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link to="/gforce" className="flex items-center gap-3" aria-label="G-Force by Cherrinet — home">
+          <Link to="/g-force" className="flex items-center gap-3" aria-label="G-Force by Cherrinet — home">
             <div className="bg-white rounded-lg p-1.5 inline-flex">
               <img src={cherrinetLogo} alt="Cherrinet" className="h-7 w-auto" />
             </div>
@@ -57,7 +57,7 @@ export function GForceNavbar() {
               Back to Cherrinet
             </Link>
             <Link
-              to="/gforce/subscribe"
+              to="/g-force/subscribe"
               className="bg-primary text-white px-5 py-2 rounded-lg text-sm hover:bg-[#8E1B22] transition-colors"
             >
               Get a Quote
@@ -100,7 +100,7 @@ export function GForceNavbar() {
                 Back to Cherrinet
               </Link>
               <Link
-                to="/gforce/subscribe"
+                to="/g-force/subscribe"
                 onClick={() => setMobileOpen(false)}
                 className="bg-primary text-white px-4 py-3 rounded-lg text-sm text-center hover:bg-[#8E1B22] transition-colors"
               >

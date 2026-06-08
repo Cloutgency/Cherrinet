@@ -5,12 +5,12 @@ import cherrinetLogo from "../../imports/image-1.png";
 
 const navLinks = [
   { label: "Plans", path: "/plans" },
-  { label: "Coverage", path: "/coverage" },
-  { label: "About Us", path: "/about" },
+  { label: "Coverage", path: "/cherrinet-coverage" },
+  { label: "About Us", path: "/about-us" },
   { label: "Support", path: "/support" },
   { label: "Quick Pay", href: "https://partner.knet.co.in/subscriber_login" },
   { label: "My Account", href: "https://partner.knet.co.in/subscriber_login" },
-  { label: "G-Force", path: "/gforce", highlight: true },
+  { label: "G-Force", path: "/g-force", highlight: true },
 ];
 
 export function Navbar() {
@@ -71,7 +71,7 @@ export function Navbar() {
               +91 44 4930 3030
             </a>
             <Link
-              to="/enquire"
+              to="/contact-us"
               className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm hover:bg-black hover:text-[#E47A82] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary transition-colors"
             >
               Get Started
@@ -132,7 +132,7 @@ export function Navbar() {
                 +91 44 4930 3030
               </a>
               <Link
-                to="/enquire"
+                to="/contact-us"
                 onClick={() => setMobileOpen(false)}
                 className="bg-primary text-primary-foreground px-4 py-3 rounded-lg text-sm text-center hover:bg-[#8E1B22] transition-colors"
               >

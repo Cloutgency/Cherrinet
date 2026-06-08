@@ -19,7 +19,7 @@ export function ChatWidget() {
       return "Hello! I'm Cherry, Cherrinet's virtual assistant. I can help with plans, installation, coverage, billing, G-Force business plans, and OTT add-ons. Ask me anything about the site or our services.";
     }
     if (/(gforce|g-force|business fiber|business plan|enterprise|sme|gforce plan)/.test(lower)) {
-      return "G-Force is Cherrinet's business-grade service for offices and enterprises. We offer plans like G-FORCE 2, G-FORCE 6, G-FORCE 10, plus SME Silver, Gold, Diamond, and Platinum. Visit /gforce for business broadband details and pricing.";
+      return "G-Force is Cherrinet's business-grade service for offices and enterprises. We offer plans like G-FORCE 2, G-FORCE 6, G-FORCE 10, plus SME Silver, Gold, Diamond, and Platinum. Visit /g-force for business broadband details and pricing.";
     }
     if (/(refer|reference|page link|link me|direct me|which page|which section|where can i find|where is)/.test(lower)) {
       if (/(home|main|landing)/.test(lower)) {
@@ -29,24 +29,24 @@ export function ChatWidget() {
         return "Plans page: /plans — compare broadband plans, speeds, and pricing.";
       }
       if (/(coverage|area|availability|pin|pincode|zipcode)/.test(lower)) {
-        return "Coverage page: /coverage — check who we serve by entering your 6-digit PIN code.";
+        return "Coverage page: /cherrinet-coverage — check who we serve by entering your 6-digit PIN code.";
       }
       if (/(support|help|faq|chat|customer support)/.test(lower)) {
         return "Support page: /support — FAQs, contact options, and the Cherry Bot chat are available here.";
       }
       if (/(enquire|contact|quote|request)/.test(lower)) {
-        return "Enquire page: /enquire — submit your details and our team will get back to you with a quote.";
+        return "Contact page: /contact-us — submit your details and our team will get back to you with a quote.";
       }
       if (/(about|company|who are you)/.test(lower)) {
-        return "About page: /about — learn more about Cherrinet and our services.";
+        return "About page: /about-us — learn more about Cherrinet and our services.";
       }
       if (/(gforce|business)/.test(lower)) {
-        return "G-Force page: /gforce — business plans, pricing, and enquiry options for enterprise customers.";
+        return "G-Force page: /g-force — business plans, pricing, and enquiry options for enterprise customers.";
       }
-      return "Here are the main pages: Home /, Plans /plans, Coverage /coverage, Support /support, Enquire /enquire, G-Force /gforce.";
+      return "Here are the main pages: Home /, Plans /plans, Coverage /cherrinet-coverage, Support /support, Contact /contact-us, G-Force /g-force.";
     }
     if (/(website|site|pages|navigation|about the site|overall|what pages|what does the site)/.test(lower)) {
-      return "This site includes Home, Plans, Coverage, Support, Enquire, and G-Force pages. Use Plans for pricing, Coverage for availability, Support for help, and G-Force for business services.";
+      return "This site includes Home, Plans, Coverage, Support, Contact, and G-Force pages. Use Plans for pricing, Coverage for availability, Support for help, and G-Force for business services.";
     }
     if (/(plan|price|cost|₹|subscription)/.test(lower)) {
       return "Our plans start from ₹479/month for 50 Mbps and go up to ₹1,999/month for 1 Gbps. Visit /plans for the full comparison and current offers.";

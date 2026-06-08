@@ -67,10 +67,10 @@ export function Coverage() {
   return (
     <div className="flex flex-col">
       {/* Hero — Tamil Nadu Coverage Map */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#FBEEEF] via-white to-secondary/40 border-b border-border min-h-[calc(100vh-4rem)]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 h-full">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
-            <div className="flex flex-col gap-5 justify-center">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#FBEEEF] via-white to-secondary/40 border-b border-border min-h-[60vh] lg:min-h-[72vh]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch h-full">
+            <div className="flex flex-col gap-5 justify-center px-4 py-8 lg:py-12">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full w-fit">
                 <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-sm text-primary">Tamil Nadu Coverage</span>
@@ -101,7 +101,7 @@ export function Coverage() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center items-center h-full min-h-[60vh] overflow-hidden rounded-3xl shadow-xl border border-border bg-white">
+            <div className="flex justify-center items-center h-full overflow-hidden rounded-3xl shadow-xl border border-border bg-white min-h-0 mt-6 lg:mt-12">
               <img
                 src="/images/map.png"
                 alt="Tamil Nadu coverage map"

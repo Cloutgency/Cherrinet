@@ -80,10 +80,10 @@ export function Footer() {
             {[
               { label: "Home", path: "/" },
               { label: "Plans & Pricing", path: "/plans" },
-              { label: "Check Coverage", path: "/coverage" },
-              { label: "About Us", path: "/about" },
+              { label: "Check Coverage", path: "/cherrinet-coverage" },
+              { label: "About Us", path: "/about-us" },
               { label: "Support", path: "/support" },
-              { label: "G-Force (Business)", path: "/gforce" },
+              { label: "G-Force (Business)", path: "/g-force" },
             ].map((link) => (
               <Link
                 key={link.label}

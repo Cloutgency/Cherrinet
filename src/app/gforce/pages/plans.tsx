@@ -114,7 +114,7 @@ export function GForcePlans() {
                   ))}
                 </ul>
                 <Link
-                  to="/gforce/subscribe"
+                  to="/g-force/subscribe"
                   className={`mt-auto w-full py-2.5 rounded-xl text-sm text-center transition-colors flex items-center justify-center gap-2 ${
                     plan.popular
                       ? "bg-primary text-white hover:bg-[#8E1B22]"
@@ -188,7 +188,7 @@ export function GForcePlans() {
               </div>
 
               <Link
-                to="/gforce/subscribe"
+                to="/g-force/subscribe"
                 className="mt-auto w-full py-2.5 rounded-xl text-sm text-center bg-primary text-white hover:bg-[#8E1B22] transition-colors flex items-center justify-center gap-2"
               >
                 Enquire Now

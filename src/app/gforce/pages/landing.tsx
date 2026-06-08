@@ -86,14 +86,14 @@ export function GForceLanding() {
             </p>
             <div className="flex items-center gap-4 mt-2">
               <Link
-                to="/gforce/subscribe"
+                to="/g-force/subscribe"
                 className="flex items-center gap-2 bg-primary text-white px-7 py-3.5 rounded-xl text-sm hover:bg-[#8E1B22] transition-colors"
               >
                 Talk to Sales
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                to="/gforce/plans"
+                to="/g-force/plans"
                 className="text-gray-300 hover:text-white text-sm transition-colors"
               >
                 View Plans →
@@ -209,7 +209,7 @@ export function GForceLanding() {
                   ))}
                 </ul>
                 <Link
-                  to="/gforce/subscribe"
+                  to="/g-force/subscribe"
                   className={`mt-auto w-full py-2.5 rounded-xl text-sm text-center transition-colors ${
                     plan.popular
                       ? "bg-primary text-white hover:bg-[#8E1B22]"
@@ -224,7 +224,7 @@ export function GForceLanding() {
 
           <div className="text-center mt-8">
             <Link
-              to="/gforce/plans"
+              to="/g-force/plans"
               className="inline-flex items-center gap-2 text-primary hover:text-[#8E1B22] transition-colors text-sm"
             >
               See full plan list
