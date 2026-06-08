@@ -8,6 +8,8 @@ const navLinks = [
   { label: "Coverage", path: "/coverage" },
   { label: "About Us", path: "/about" },
   { label: "Support", path: "/support" },
+  { label: "Quick Pay", href: "https://partner.knet.co.in/subscriber_login" },
+  { label: "My Account", href: "https://partner.knet.co.in/subscriber_login" },
   { label: "G-Force", path: "/gforce", highlight: true },
 ];
 
@@ -31,19 +33,31 @@ export function Navbar() {
           {/* Desktop Nav */}
           <div className="hidden lg:flex items-center gap-1">
             {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.path}
-                className={`px-3 py-2 rounded-lg text-sm transition-colors ${
-                  location.pathname === link.path
-                    ? "text-primary bg-secondary"
-                    : link.highlight
-                    ? "text-primary border border-primary/30 hover:bg-secondary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {link.label}
-              </Link>
+              link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="px-3 py-2 rounded-lg text-sm transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                    location.pathname === link.path
+                      ? "text-primary bg-secondary"
+                      : link.highlight
+                      ? "text-primary border border-primary/30 hover:bg-secondary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
             ))}
           </div>
 
@@ -82,20 +96,33 @@ export function Navbar() {
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-border">
           <div className="px-4 py-4 flex flex-col gap-1">
-            {navLinks.map((link) => (
-              <Link
-                key={link.label}
-                to={link.path}
-                onClick={() => setMobileOpen(false)}
-                className={`px-4 py-3 rounded-lg text-sm transition-colors ${
-                  location.pathname === link.path
-                    ? "text-primary bg-secondary"
-                    : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {navLinks.map((link) =>
+              link.href ? (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() => setMobileOpen(false)}
+                  className="px-4 py-3 rounded-lg text-sm transition-colors text-muted-foreground hover:text-foreground hover:bg-muted"
+                >
+                  {link.label}
+                </a>
+              ) : (
+                <Link
+                  key={link.label}
+                  to={link.path}
+                  onClick={() => setMobileOpen(false)}
+                  className={`px-4 py-3 rounded-lg text-sm transition-colors ${
+                    location.pathname === link.path
+                      ? "text-primary bg-secondary"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            )}
             <div className="mt-3 pt-3 border-t border-border flex flex-col gap-3">
               <a
                 href="tel:+914449303030"

@@ -44,9 +44,10 @@ export function GForceSubscribe() {
               </div>
             </button>
 
-            <button
-              type="button"
-              onClick={() => setModal("quickpay")}
+            <a
+              href="https://partner.knet.co.in/subscriber_login"
+              target="_blank"
+              rel="noreferrer"
               className="flex flex-col gap-5 p-8 rounded-2xl border-2 border-border hover:border-primary hover:shadow-lg transition-all text-left cursor-pointer"
             >
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center">
@@ -62,7 +63,7 @@ export function GForceSubscribe() {
                 Open payment portal
                 <ArrowRight className="w-4 h-4" />
               </div>
-            </button>
+            </a>
           </div>
         </div>
       </section>

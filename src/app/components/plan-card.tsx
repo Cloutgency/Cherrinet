@@ -73,17 +73,22 @@ export function PlanCard({ plan, onSelect }: PlanCardProps) {
         {plan.ott && plan.ott.length > 0 && (
           <div className="mt-2 p-3 bg-secondary rounded-lg">
             <p className="text-xs text-secondary-foreground mb-2">Bundled OTT</p>
-            <div className="flex flex-wrap gap-1.5">
+            <div className="flex flex-wrap gap-2">
               {plan.ott.map((app, i) => (
-                <span
+                <div
                   key={i}
-                  className="px-2.5 py-1 bg-white rounded-md text-xs text-foreground border border-border"
+                  className="flex items-center gap-2 rounded-xl border border-border bg-white px-3 py-2"
                 >
-                  {app}
-                </span>
+                  <img
+                    src={`/OTT/${encodeURIComponent(app)}.svg`}
+                    alt={app}
+                    className="h-6 w-auto object-contain"
+                  />
+                  <span className="text-xs text-muted-foreground">{app}</span>
+                </div>
               ))}
             </div>
-              <p className="text-xs text-muted-foreground mt-2">All OTTs available from Rs.29/month</p>
+            <p className="text-xs text-muted-foreground mt-2">All OTTs available from Rs.29/month</p>
           </div>
         )}
       </div>

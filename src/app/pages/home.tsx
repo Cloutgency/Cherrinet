@@ -24,7 +24,7 @@ const plans = [
     speed: "50",
     price: "479",
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Ideal for browsing and social media",
       "Unlimited data",
@@ -37,7 +37,7 @@ const plans = [
     speed: "100",
     price: "679",
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Perfect for multiple users",
       "Unlimited data",
@@ -51,7 +51,7 @@ const plans = [
     price: "799",
     popular: true,
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Great for 4K streaming",
       "Unlimited data",
@@ -64,7 +64,7 @@ const plans = [
     speed: "200",
     price: "999",
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Optimized for gaming and remote work",
       "Unlimited data",
@@ -77,7 +77,7 @@ const plans = [
     speed: "500",
     price: "1199",
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Two routers included",
       "Unlimited data",
@@ -90,7 +90,7 @@ const plans = [
     speed: "1000",
     price: "1999",
     data: "Unlimited",
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Ultimate speed for big homes and offices",
       "Unlimited data",
@@ -276,14 +276,19 @@ export function Home() {
                         OTT Included
                       </span>
                     </div>
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                       {plan.ott.map((o, idx) => (
-                        <span
+                        <div
                           key={idx}
-                          className="text-xs px-2 py-1 rounded-md bg-secondary text-foreground"
+                          className="flex items-center gap-2 rounded-xl border border-border bg-white px-2 py-2"
                         >
-                          {o}
-                        </span>
+                          <img
+                            src={`/OTT/${encodeURIComponent(o)}.svg`}
+                            alt={o}
+                            className="h-6 w-auto object-contain"
+                          />
+                          <span className="text-xs text-muted-foreground">{o}</span>
+                        </div>
                       ))}
                     </div>
                   </div>

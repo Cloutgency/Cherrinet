@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router";
+import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router";
 import { ChevronDown, Search, Phone, Mail, MessageCircle, MapPin, Clock, ArrowRight, FileText } from "lucide-react";
 
 const faqCategories = [
@@ -76,10 +76,20 @@ const faqCategories = [
 export function Support() {
   const [openFaq, setOpenFaq] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
+  const location = useLocation();
 
   const toggleFaq = (id: string) => {
     setOpenFaq(openFaq === id ? null : id);
   };
+
+  useEffect(() => {
+    if (location.hash === "#faq") {
+      const target = document.getElementById("faq");
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+  }, [location.hash]);
 
   const filteredCategories = faqCategories.map((cat) => ({
     ...cat,
@@ -149,6 +159,20 @@ export function Support() {
                 <p className="text-sm text-muted-foreground">support@cherrinet.in</p>
               </div>
             </a>
+            <a
+              href="https://partner.knet.co.in/subscriber_login"
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all"
+            >
+              <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0">
+                <FileText className="w-5 h-5 text-primary" aria-hidden="true" />
+              </div>
+              <div>
+                <p className="text-sm text-foreground">Quick Pay</p>
+                <p className="text-sm text-muted-foreground">Pay your bill instantly</p>
+              </div>
+            </a>
             <div className="flex items-center gap-4 p-5 rounded-2xl border border-border hover:border-primary/30 hover:shadow-md transition-all">
               <div className="w-12 h-12 rounded-xl bg-secondary flex items-center justify-center shrink-0">
                 <MessageCircle className="w-5 h-5 text-primary" aria-hidden="true" />
@@ -183,7 +207,7 @@ export function Support() {
       </section>
 
       {/* FAQs */}
-      <section className="bg-muted/30">
+      <section id="faq" className="bg-muted/30">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <h2 className="text-2xl text-foreground text-center mb-10">Frequently Asked Questions</h2>
 
@@ -253,17 +277,18 @@ export function Support() {
                 <p>Live Chat: 24/7</p>
                 <p>Walk-in Center: Mon-Sat, 10 AM - 7 PM</p>
               </div>
-            </div>{/*
+            </div>
             <div className="flex flex-col gap-4 p-6 rounded-2xl border border-border">
               <MapPin className="w-6 h-6 text-primary" />
               <h3 className="text-foreground">Service Center</h3>
               <div className="flex flex-col gap-2 text-sm text-muted-foreground">
                 <p>Cherrinet Experience Center</p>
-                <p>No. 42, Anna Salai, Teynampet</p>
-                <p>Chennai - 600018</p>
+                <p>NO.1, Mura Towers,</p>
+                <p>Dr Thirumoorthy Nagar Main Road,</p>
+                <p>Nungambakkam. Chennai - 600034</p>
                 <p>Near US Consulate</p>
               </div>
-            </div>*/}
+            </div>
           </div>
         </div>
       </section>

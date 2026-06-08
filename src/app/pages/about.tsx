@@ -2,6 +2,9 @@ import { Users, Target, Heart, Lightbulb, Star, Quote, Sparkles, Zap } from "luc
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { VideoTestimonials } from "../components/video-testimonials";
 
+// Feature flag: Set to true to show Customer Stories section
+const SHOW_CUSTOMER_STORIES = false;
+
 const values = [
   { icon: Target, title: "Customer First", desc: "Every decision starts with our customers." },
   { icon: Heart, title: "Community Focused", desc: "Connecting people, homes and businesses." },
@@ -142,6 +145,7 @@ export function About() {
       </section>
 
       {/* Testimonials */}
+      {SHOW_CUSTOMER_STORIES && (
       <section className="bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
           <div className="flex flex-col items-center gap-3 text-center mb-14">
@@ -155,6 +159,7 @@ export function About() {
           <VideoTestimonials />
         </div>
       </section>
+      )}
 
       {/* Image Banner */}
       <section className="relative h-64 sm:h-80 overflow-hidden">

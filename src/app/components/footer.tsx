@@ -1,5 +1,5 @@
 import { Link } from "react-router";
-import { Instagram, MapPin, Phone, Mail } from "lucide-react";
+import { Instagram, MapPin, Phone, Mail, Twitter, Youtube, Facebook } from "lucide-react";
 import cherrinetLogo from "../../imports/image-1.png";
 
 function WhatsAppIcon({ className }: { className?: string }) {
@@ -31,6 +31,7 @@ export function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Cherrinet Instagram"
               >
                 <Instagram className="w-4 h-4" />
               </a>
@@ -42,6 +43,33 @@ export function Footer() {
                 aria-label="Cherrinet WhatsApp"
               >
                 <WhatsAppIcon className="w-4 h-4" />
+              </a>
+              <a
+                href="https://x.com/cherrinetSocial/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Cherrinet Twitter"
+              >
+                <Twitter className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.youtube.com/CherrinetSocial"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Cherrinet YouTube"
+              >
+                <Youtube className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.facebook.com/CherrinetSocial/"
+                target="_blank"
+                rel="noreferrer"
+                className="w-9 h-9 rounded-full bg-gray-800 flex items-center justify-center hover:bg-primary transition-colors"
+                aria-label="Cherrinet Facebook"
+              >
+                <Facebook className="w-4 h-4" />
               </a>
             </div>
           </div>
@@ -70,26 +98,79 @@ export function Footer() {
           {/* Support */}
           <div className="flex flex-col gap-3">
             <h4 className="text-white mb-1">Support</h4>
-            {["FAQs", "Installation Guide", "Speed Test", "Report an Issue", "Terms & Conditions", "Privacy Policy"].map((item) => (
-              <a
-                key={item}
-                href="#"
-                className="text-sm text-gray-400 hover:text-white transition-colors"
-              >
-                {item}
-              </a>
-            ))}
+            <Link
+              to="/support#faq"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              FAQ
+            </Link>
+            <a
+              href="https://www.cherrinet.in/appellate"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Appellate
+            </a>
+            <a
+              href="/Docs/Consumer Charter.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Consumer Charter
+            </a>
+            <a
+              href="/Docs/Parental_Control_Filters.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Parental Control Filters
+            </a>
+            <a
+              href="https://www.cherrinet.in/privacy-policy"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Privacy Policy
+            </a>
+            <a
+              href="/Docs/Device Policy.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Device Policy
+            </a>
+            <a
+              href="/Docs/Wear And Tear Policy.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Wear And Tear
+            </a>
+            <a
+              href="https://www.cherrinet.in/quality-of-service"
+              target="_blank"
+              rel="noreferrer"
+              className="text-sm text-gray-400 hover:text-white transition-colors"
+            >
+              Quality of Service
+            </a>
           </div>
 
           {/* Contact */}
           <div className="flex flex-col gap-4">
             <h4 className="text-white mb-1">Contact Us</h4>
-            {/*<div className="flex items-start gap-3">
+            <div className="flex items-start gap-3">
               <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-primary" />
                <p className="text-sm text-gray-400">
-                No. 42, Anna Salai, Teynampet, Chennai - 600018
+                NO.1, Mura Towers, Dr Thirumoorthy Nagar Main Road, Nungambakkam. Chennai - 600034
               </p>
-            </div>*/}
+            </div>
             <div className="flex items-center gap-3">
               <Phone className="w-4 h-4 shrink-0 text-primary" />
               <a href="tel:+914449303030" className="text-sm text-gray-400 hover:text-white transition-colors">

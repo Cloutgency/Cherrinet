@@ -5,36 +5,48 @@ import { LeadCaptureForm } from "../components/lead-capture-form";
 import { ImageWithFallback } from "../components/figma/ImageWithFallback";
 import { CoverageAreasModal } from "../components/coverage-areas-modal";
 import { COVERAGE_AREAS } from "../data/coverageAreas";
-import type { Plan } from "../components/plan-card";
+import { PlanCard, type Plan } from "../components/plan-card";
 
 const eligiblePlans: Plan[] = [
   {
-    id: "essential",
-    name: "Essential",
-    speed: "75",
-    price: 599,
+    id: "budget",
+    name: "Budget Plan",
+    speed: "50",
+    price: 479,
     data: "Unlimited",
-    benefits: ["HD streaming", "Free dual-band router"],
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    benefits: [
+      "Ideal for browsing and social media",
+      "Unlimited data",
+      "Free router included",
+    ],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
   },
   {
-    id: "pro",
-    name: "Pro",
+    id: "family",
+    name: "Family Plan",
     speed: "100",
-    price: 699,
+    price: 679,
     data: "Unlimited",
-    benefits: ["4K streaming", "Wi-Fi 6 router", "Priority support"],
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    benefits: [
+      "Perfect for multiple users",
+      "Unlimited data",
+      "Free dual-band router",
+    ],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     popular: true,
   },
   {
-    id: "ultra",
-    name: "Ultra",
-    speed: "300",
-    price: 999,
+    id: "premium-150",
+    name: "Premium Plan",
+    speed: "150",
+    price: 799,
     data: "Unlimited",
-    benefits: ["8K ready", "Wi-Fi 6E mesh", "VIP support"],
-    ott: ["Hotstar", "ZEE5", "SonyLIV", "Amazon Prime"],
+    benefits: [
+      "Great for 4K streaming",
+      "Unlimited data",
+      "High-performance router included",
+    ],
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
   },
 ];
 
@@ -55,10 +67,10 @@ export function Coverage() {
   return (
     <div className="flex flex-col">
       {/* Hero — Tamil Nadu Coverage Map */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#FBEEEF] via-white to-secondary/40 border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="flex flex-col gap-5">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#FBEEEF] via-white to-secondary/40 border-b border-border min-h-[calc(100vh-4rem)]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16 h-full">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center h-full">
+            <div className="flex flex-col gap-5 justify-center">
               <div className="flex items-center gap-2 px-3 py-1.5 bg-primary/10 rounded-full w-fit">
                 <MapPin className="w-4 h-4 text-primary" />
                 <span className="text-sm text-primary">Tamil Nadu Coverage</span>
@@ -89,11 +101,11 @@ export function Coverage() {
                 </div>
               </div>
             </div>
-            <div className="flex justify-center">
+            <div className="flex justify-center items-center h-full min-h-[60vh] overflow-hidden rounded-3xl shadow-xl border border-border bg-white">
               <img
                 src="/images/map.png"
                 alt="Tamil Nadu coverage map"
-                className="w-full max-w-none rounded-3xl shadow-xl border border-border object-cover h-[420px] sm:h-[520px] lg:h-[75vh] xl:h-[80vh]"
+                className="h-full w-full object-cover"
               />
             </div>
           </div>
@@ -147,53 +159,8 @@ export function Coverage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {eligiblePlans.map((plan) => (
-                <div
-                  key={plan.id}
-                  className={`flex flex-col gap-4 p-6 bg-white rounded-2xl border-2 transition-all hover:shadow-lg ${
-                    plan.popular ? "border-primary" : "border-border"
-                  }`}
-                >
-                  {plan.popular && (
-                    <span className="text-xs text-primary bg-secondary px-2 py-1 rounded-md w-fit">
-                      Recommended
-                    </span>
-                  )}
-                  <div>
-                    <p className="text-sm text-muted-foreground">{plan.name}</p>
-                    <div className="flex items-baseline gap-1 mt-1">
-                      <span className="text-3xl text-foreground">{plan.speed}</span>
-                      <span className="text-sm text-muted-foreground">Mbps</span>
-                    </div>
-                  </div>
-                  <p className="text-2xl text-foreground">&#8377;{plan.price}<span className="text-sm text-muted-foreground">/mo</span></p>
-                  <div className="flex flex-col gap-2">
-                    {plan.benefits.map((b, i) => (
-                      <div key={i} className="flex items-center gap-2">
-                        <CheckCircle className="w-3.5 h-3.5 text-green-600 shrink-0" />
-                        <span className="text-sm text-muted-foreground">{b}</span>
-                      </div>
-                    ))}
-                  </div>
-                  {plan.ott && (
-                    <div className="flex flex-wrap gap-1">
-                      {plan.ott.map((app, i) => (
-                        <span key={i} className="text-xs bg-secondary text-secondary-foreground px-2 py-1 rounded">
-                          {app}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  <button
-                    onClick={() => { setSelectedPlan(plan); setShowForm(true); }}
-                    className={`w-full py-3 rounded-xl text-sm transition-colors cursor-pointer flex items-center justify-center gap-2 ${
-                      plan.popular
-                        ? "bg-primary text-white hover:bg-[#8E1B22]"
-                        : "bg-foreground text-white hover:bg-gray-800"
-                    }`}
-                  >
-                    Get Started
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
+                <div key={plan.id} className="flex">
+                  <PlanCard plan={plan} onSelect={(selectedPlan) => { setSelectedPlan(selectedPlan); setShowForm(true); }} />
                 </div>
               ))}
             </div>

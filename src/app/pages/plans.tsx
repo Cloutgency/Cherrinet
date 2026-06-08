@@ -10,6 +10,7 @@ const allPlans: Plan[] = [
     speed: "50",
     price: 479,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Ideal for light browsing and social media",
       "Unlimited data",
@@ -23,6 +24,7 @@ const allPlans: Plan[] = [
     speed: "100",
     price: 679,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Perfect for family streaming",
       "Unlimited data",
@@ -36,6 +38,7 @@ const allPlans: Plan[] = [
     speed: "150",
     price: 799,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Great for heavy streaming",
       "Unlimited data",
@@ -49,6 +52,7 @@ const allPlans: Plan[] = [
     speed: "200",
     price: 999,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Optimized for gaming and WFH",
       "Unlimited data",
@@ -61,6 +65,7 @@ const allPlans: Plan[] = [
     speed: "500",
     price: 1199,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Two routers included",
       "Unlimited data",
@@ -73,6 +78,7 @@ const allPlans: Plan[] = [
     speed: "1000",
     price: 1999,
     data: "Unlimited",
+    ott: ["Jio", "Prime", "Sony liv", "Z5"],
     benefits: [
       "Ultimate speed for large homes and offices",
       "Unlimited data",
